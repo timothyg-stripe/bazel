@@ -125,11 +125,12 @@ public class ParallelEvaluatorTest {
       ProcessableGraph graph,
       ImmutableMap<SkyFunctionName, SkyFunction> builders,
       boolean keepGoing,
-      EventFilter storedEventFilter,
-      Version evaluationVersion) {
+      EventFilter storedEventFilter) {
+    Version oldGraphVersion = graphVersion;
+    graphVersion = graphVersion.next();
     return new ParallelEvaluator(
         graph,
-        evaluationVersion,
+        oldGraphVersion,
         Version.minimal(),
         builders,
         reportedEvents,
@@ -143,16 +144,6 @@ public class ParallelEvaluatorTest {
         new SimpleCycleDetector(),
         /* mergingSkyframeAnalysisExecutionPhases= */ false,
         UnnecessaryTemporaryStateDropperReceiver.NULL);
-  }
-
-  private ParallelEvaluator makeEvaluator(
-      ProcessableGraph graph,
-      ImmutableMap<SkyFunctionName, SkyFunction> builders,
-      boolean keepGoing,
-      EventFilter storedEventFilter) {
-    Version oldGraphVersion = graphVersion;
-    graphVersion = graphVersion.next();
-    return makeEvaluator(graph, builders, keepGoing, storedEventFilter, oldGraphVersion);
   }
 
   private ParallelEvaluator makeEvaluator(
@@ -1004,16 +995,7 @@ public class ParallelEvaluatorTest {
 
     SkyKey topKey = GraphTester.toSkyKey("top");
     tester.getOrCreate(topKey).addDependency(catastropheKey).setComputedValue(CONCATENATE);
-
-    ParallelEvaluator evaluator =
-        makeEvaluator(
-            graph,
-            tester.getSkyFunctionMap(),
-            keepGoing,
-            EventFilter.FULL_STORAGE,
-            keepEdges ? graphVersion : ConstantVersion.INSTANCE);
-
-    EvaluationResult<StringValue> result = evaluator.eval(ImmutableList.of(topKey, otherKey));
+    EvaluationResult<StringValue> result = eval(keepGoing, topKey, otherKey);
     assertThatEvaluationResult(result).hasErrorEntryForKeyThat(topKey);
     if (keepGoing) {
       assertThat(result.getCatastrophe()).isSameInstanceAs(catastrophe);

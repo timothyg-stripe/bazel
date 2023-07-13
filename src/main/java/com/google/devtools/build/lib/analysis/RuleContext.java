@@ -1091,11 +1091,8 @@ public final class RuleContext extends TargetContext
     thread.setPrintHandler(Event.makeDebugPrintHandler(env.getEventHandler()));
     new BazelStarlarkContext(
             BazelStarlarkContext.Phase.ANALYSIS,
-            ruleClassProvider.getToolsRepository(),
-            /* fragmentNameToClass= */ null,
             getSymbolGenerator(),
-            getLabel(),
-            /* networkAllowlistForTests= */ null)
+            /* analysisRuleLabel= */ getLabel())
         .storeInThread(thread);
     return thread;
   }
