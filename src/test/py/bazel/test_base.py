@@ -102,10 +102,10 @@ class TestBase(absltest.TestCase):
         if TestBase.IsDarwin():
           # For reducing SSD usage on our physical Mac machines.
           f.write('common --experimental_repository_cache_hardlinks\n')
-      if TestBase.IsDarwin() and _HasIpv6DefaultRoute():
-        # Prefer IPv6 network on macOS only when an IPv6 default route exists.
-        f.write('startup --host_jvm_args=-Djava.net.preferIPv6Addresses=true\n')
-        f.write('build --jvmopt=-Djava.net.preferIPv6Addresses\n')
+      # if TestBase.IsDarwin() and _HasIpv6DefaultRoute():
+      #   # Prefer IPv6 network on macOS only when an IPv6 default route exists.
+      #   f.write('startup --host_jvm_args=-Djava.net.preferIPv6Addresses=true\n')
+      #   f.write('build --jvmopt=-Djava.net.preferIPv6Addresses\n')
 
       if TestBase.IsWindows():
         # Use a specific Python toolchain on Windows to avoid blowing up the
@@ -602,15 +602,15 @@ class TestBase(absltest.TestCase):
     env['TEST_TMPDIR'] = TestBase.GetEnv('TEST_TMPDIR')
     env['TMP'] = self._temp
 
-    if TestBase.IsDarwin():
-      # Make sure rules_jvm_external works in IPv6-only environments.
-      # Only set a default when an IPv6 default route exists. Preserve any
-      # user-provided COURSIER_OPTS value.
-      existing = os.environ.get('COURSIER_OPTS')
-      if existing is not None:
-        env['COURSIER_OPTS'] = existing
-      elif _HasIpv6DefaultRoute():
-        env['COURSIER_OPTS'] = '-Djava.net.preferIPv6Addresses=true'
+    # if TestBase.IsDarwin():
+    #   # Make sure rules_jvm_external works in IPv6-only environments.
+    #   # Only set a default when an IPv6 default route exists. Preserve any
+    #   # user-provided COURSIER_OPTS value.
+    #   existing = os.environ.get('COURSIER_OPTS')
+    #   if existing is not None:
+    #     env['COURSIER_OPTS'] = existing
+    #   elif _HasIpv6DefaultRoute():
+    #     env['COURSIER_OPTS'] = '-Djava.net.preferIPv6Addresses=true'
 
     if env_remove:
       for e in env_remove:
