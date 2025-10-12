@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="FacetManager">
+    <facet type="Python" name="Python">
+      <configuration sdkName="Python 3.14" />
+    </facet>
+  </component>
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$/../..">
+      <sourceFolder url="file://$MODULE_DIR$" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../test" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../test/java" isTestSource="true" />
+      <excludeFolder url="file://$MODULE_DIR$/../../bazel-bazel" />
+      <excludeFolder url="file://$MODULE_DIR$/../../bazel-bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../bazel-out" />
+      <excludeFolder url="file://$MODULE_DIR$/../../bazel-testlogs" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="javax_annotations" level="project" />
+    <orderEntry type="library" name="apache-commons-compress-1.19" level="project" />
+    <orderEntry type="library" name="netty" level="project" />
+    <orderEntry type="library" name="junit-4.13" level="project" />
+    <orderEntry type="library" name="java-diff-utils-4.0" level="project" />
+    <orderEntry type="library" name="error_prone" level="project" />
+    <orderEntry type="library" name="java-allocation-instrumenter-3.3.0" level="project" />
+    <orderEntry type="library" name="xz-1.9" level="project" />
+    <orderEntry type="library" name="checker_framework_dataflow" level="project" />
+    <orderEntry type="library" name="grpc-java" level="project" />
+    <orderEntry type="library" name="commons-pool2-2.8.0" level="project" />
+    <orderEntry type="library" name="auto" level="project" />
+    <orderEntry type="library" name="turbine_direct" level="project" />
+    <orderEntry type="library" name="flogger" level="project" />
+    <orderEntry type="library" name="truth-1.0.1" level="project" />
+    <orderEntry type="library" name="auth" level="project" />
+    <orderEntry type="library" name="javapoet-1.12.1" level="project" />
+    <orderEntry type="library" name="tomcat-annotations-api-8.0.5" level="project" />
+    <orderEntry type="library" name="rxjava-3.1.2" level="project" />
+    <orderEntry type="library" name="jsr-305" level="project" />
+    <orderEntry type="library" name="truth-java8-extension-1.0.1" level="project" />
+    <orderEntry type="library" name="gson-2.8.6" level="project" />
+    <orderEntry type="library" name="mockito-core-3.12.4" level="project" />
+    <orderEntry type="library" name="checker_framework_annotations" level="project" />
+    <orderEntry type="library" name="velocity-1.7" level="project" />
+    <orderEntry type="library" name="caffeine-2.9.2" level="project" />
+    <orderEntry type="library" name="guava" level="project" />
+    <orderEntry type="library" name="protobuf" level="project" />
+    <orderEntry type="library" name="src/main/protobuf" level="project" />
+    <orderEntry type="library" name="Python 3.14 interpreter library" level="application" />
+  </component>
+</module>
