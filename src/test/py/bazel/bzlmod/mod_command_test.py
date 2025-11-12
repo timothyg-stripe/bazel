@@ -526,11 +526,11 @@ class ModCommandTest(test_base.TestBase):
     )
     self.assertRegex(stdout.pop(8), r'^  remote_module_file_integrity = ".*",$')
     self.assertRegex(stdout.pop(15), r'^  path = ".*",$')
-    self.assertRegex(stdout.pop(35), r'^  urls = \[".*"\],$')
-    self.assertRegex(stdout.pop(35), r'^  integrity = ".*",$')
-    self.assertRegex(stdout.pop(39), r'^  remote_module_file_urls = \[".*"\],$')
+    self.assertRegex(stdout.pop(37), r'^  urls = \[".*"\],$')
+    self.assertRegex(stdout.pop(37), r'^  integrity = ".*",$')
+    self.assertRegex(stdout.pop(41), r'^  remote_module_file_urls = \[".*"\],$')
     self.assertRegex(
-        stdout.pop(39), r'^  remote_module_file_integrity = ".*",$'
+        stdout.pop(41), r'^  remote_module_file_integrity = ".*",$'
     )
     self.assertListEqual(
         stdout,
@@ -567,6 +567,7 @@ class ModCommandTest(test_base.TestBase):
             'load("@@ext+//:ext.bzl", "data_repo")',
             'data_repo(',
             '  name = "ext++ext+repo3",',
+            '  _original_name = "repo3",',
             '  data = "requested repo",',
             ')',
             '',
@@ -574,6 +575,7 @@ class ModCommandTest(test_base.TestBase):
             'load("@@ext+//:ext.bzl", "data_repo")',
             'data_repo(',
             '  name = "ext++ext+repo4",',
+            '  _original_name = "repo4",',
             '  data = "requested repo",',
             ')',
             '',
@@ -584,14 +586,14 @@ class ModCommandTest(test_base.TestBase):
             ),
             'http_archive(',
             '  name = "bar+",',
-            # pop(35) -- urls=[...]
-            # pop(35) -- integrity=...
+            # pop(37) -- urls=[...]
+            # pop(37) -- integrity=...
             '  strip_prefix = "",',
             '  remote_patches = {},',
             '  remote_file_urls = {},',
             '  remote_file_integrity = {},',
-            # pop(39) -- remote_module_file_urls=[...]
-            # pop(39) -- remote_module_file_integrity=...
+            # pop(41) -- remote_module_file_urls=[...]
+            # pop(41) -- remote_module_file_integrity=...
             '  remote_patch_strip = 0,',
             ')',
             '',
